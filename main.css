@@ -276,3 +276,75 @@ body {
         font-size: 11px;
     }
 }
+.settings-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 300;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-overlay.open {
+    display: flex;
+}
+
+.settings-box {
+    background: #fff;
+    border: 2px solid #222;
+    border-radius: 16px;
+    padding: 32px;
+    width: 320px;
+    position: relative;
+    text-align: center;
+}
+
+.settings-avatar {
+    font-size: 48px;
+    margin-bottom: 8px;
+}
+
+.settings-box h2 {
+    font-family: 'Charm', cursive;
+    font-size: 22px;
+    color: #222;
+    margin: 0 0 4px;
+}
+
+.settings-box .settings-role {
+    font-family: 'Athiti', sans-serif;
+    font-size: 14px;
+    color: #888;
+    margin: 0 0 20px;
+}
+
+.settings-divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 0 0 16px;
+}
+
+.settings-box p {
+    font-family: 'Athiti', sans-serif;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.settings-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #aaa;
+    line-height: 1;
+}
+
+.settings-close:hover {
+    color: #222;
+}
