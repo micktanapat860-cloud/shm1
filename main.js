@@ -230,39 +230,17 @@ function restart() {
 readParams();
 animId = requestAnimationFrame(render);
  
-const modalData = {
-    mass: {
-        title: 'Mass มวล (m)',
-        formula: 'F = ma',
-        desc: 'มวลของวัตถุที่ติดกับสปริง มีผลต่อคาบการสั่น T = 2π√(m/k) — มวลมากขึ้น คาบยาวขึ้น'
-    },
-    spring: {
-        title: 'Spring Constant (k)',
-        formula: 'F = −kx',
-        desc: 'ค่าคงที่สปริง บอกความแข็งของสปริง k มากขึ้น สปริงแข็งขึ้น คาบสั้นลง'
-    },
-    amp: {
-        title: 'Amplitude แอมพลิจูด (A)',
-        formula: 'x(t) = A cos(ωt)',
-        desc: 'ระยะการกระจัดสูงสุดจากจุดสมดุล ไม่มีผลต่อคาบ แต่มีผลต่อความเร็วและพลังงาน'
-    },
-    custom: {
-        title: 'Damping β',
-        formula: 'x(t) = Ae^(−βt) cos(ωt)',
-        desc: 'สัมประสิทธิ์การหน่วง ถ้า β = 0 คือ SHM อุดมคติ β มากขึ้น การสั่นจะลดลงเร็วขึ้น'
-    }
-};
-
-function openModal(key) {
-    const d = modalData[key];
-    document.getElementById('modal-title').textContent = d.title;
-    document.getElementById('modal-formula').textContent = d.formula;
-    document.getElementById('modal-desc').textContent = d.desc;
-    document.getElementById('modal-overlay').classList.add('open');
-}
-
-function closeModal(e) {
-    if (!e || e.target === document.getElementById('modal-overlay') || !e.target) {
-        document.getElementById('modal-overlay').classList.remove('open');
+function resizeCanvas() {
+    const canvas = document.getElementById('sim');
+    const maxW = window.innerWidth - 32;
+    if (maxW < 800) {
+        canvas.width = maxW;
+        canvas.height = Math.round(maxW * 250 / 800);
+    } else {
+        canvas.width = 800;
+        canvas.height = 250;
     }
 }
+
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
