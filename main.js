@@ -228,3 +228,13 @@ function restart() {
 // ─── Start ───────────────────────────────────────────────────────────────────
 readParams();
 animId = requestAnimationFrame(render);
+
+function openSettings() {
+    document.getElementById('settings-overlay').classList.add('open');
+}
+
+function closeSettings(e) {
+    if (!e || e.target === document.getElementById('settings-overlay') || !e.target) {
+        document.getElementById('settings-overlay').classList.remove('open');
+    }
+}
