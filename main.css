@@ -243,3 +243,36 @@ body {
     text-align: center;
     padding-bottom: 36px;
 }
+/* canvas ไม่ล้นหน้าจอ */
+#sim {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 600px) {
+    /* controls เป็น 1 คอลัมน์ */
+    .controls {
+        grid-template-columns: 1fr;
+        max-width: 90%;
+        gap: 20px;
+    }
+
+    /* navbar ย่อ */
+    .nav-brand {
+        font-size: 13px;
+    }
+    .nav-links a {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+
+    /* tooltip ไม่ล้นขอบ */
+    .tooltip {
+        width: 180px;
+    }
+
+    /* bottom bar text เล็กลง */
+    .bottom-bar span {
+        font-size: 11px;
+    }
+}
