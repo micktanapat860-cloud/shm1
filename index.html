@@ -8,74 +8,61 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Athiti:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    
+
     <nav class="navbar">
   <span class="nav-brand">
     <i class="ti ti-wave-sine"></i> SHM Simulator
   </span>
   <div class="nav-links">
-    <a href="index.html" class="active">Simulator</a>
-    <a href="page2.html">make by</a>
+    <a href="index.html">Simulator</a>
+    <a href="page2.html" class="active">make by</a>
   </div>
   <div class="nav-actions">
     <button class="btn-icon" title="Settings" onclick="openSettings()">&#9881;</button>
   </div>
 </nav>
-<canvas id="sim" width="800" height="250"></canvas>
 
-<div class="controls">
-    <div>
-        <label class="charm-regular">Mass มวล</label>
-        <div class="input-wrap">
-            <input type="number" id="mass" value="5" step="0.1">
-            <span class="unit-badge">kg</span>
+<section class="credits-section">
+    <i class="ti ti-wave-sine credits-icon"></i>
+    <h1 class="charm-bold">ผู้จัดทำ</h1>
+    <p class="athiti-text credits-sub">สมาชิกกลุ่มอ้ายมา4.5คน</p>
+
+    <div class="team-grid">
+        <div class="team-card">
+            <i class="ti ti-user team-avatar"></i>
+            <span class="team-name charm-regular">นายศิวัช ศรีรัตนา</span>
+            <span class="team-meta athiti-text">ม.5/5 เลขที่ 20</span>
         </div>
-        <div class="tooltip">
-            <div class="tt-formula">T = 2π√(m/k)</div>
-            <div class="tt-desc">มวลของวัตถุ มากขึ้น → คาบยาวขึ้น</div>
+        <div class="team-card">
+            <i class="ti ti-user team-avatar"></i>
+            <span class="team-name charm-regular">นายธนภัทร ปิโยปถัมภ์พงศ์</span>
+            <span class="team-meta athiti-text">ม.5/5 เลขที่ 22</span>
         </div>
-    </div>
-    <div>
-        <label class="charm-regular">Spring Constant ค่าคงที่สปริง k</label>
-        <div class="input-wrap">
-            <input type="number" id="spring" value="10" step="0.1">
-            <span class="unit-badge">N/m</span>
+        <div class="team-card">
+            <i class="ti ti-user team-avatar"></i>
+            <span class="team-name charm-regular">เจษฎากร วงษ์พล</span>
+            <span class="team-meta athiti-text">ม.5/5 เลขที่ 24</span>
         </div>
-        <div class="tooltip">
-            <div class="tt-formula">F = −kx</div>
-            <div class="tt-desc">ความแข็งสปริง มากขึ้น → คาบสั้นลง</div>
-        </div>
-    </div>
-    <div>
-        <label class="charm-regular">Amplitude แอมพลิจูด</label>
-        <div class="input-wrap">
-            <input type="number" id="amp" value="100" step="1">
-            <span class="unit-badge">px</span>
-        </div>
-        <div class="tooltip">
-            <div class="tt-formula">x(t) = A cos(ωt)</div>
-            <div class="tt-desc">ระยะกระจัดสูงสุด ไม่มีผลต่อคาบ</div>
+        <div class="team-card">
+            <i class="ti ti-user team-avatar"></i>
+            <span class="team-name charm-regular">นายศุภาสิทธิ์ แสนหาญ</span>
+            <span class="team-meta athiti-text">ม.5/5 เลขที่ 29</span>
         </div>
     </div>
-    <div>
-        <label class="charm-regular">Custom กำหนดเอง β</label>
-        <div class="input-wrap">
-            <input type="number" id="custom" value="0" step="0.01">
-            <span class="unit-badge">β</span>
-        </div>
-        <div class="tooltip">
-            <div class="tt-formula">Ae⁻ᵝᵗ cos(ωt)</div>
-            <div class="tt-desc">β = 0 คือ SHM อุดมคติ มากขึ้น → หน่วงเร็วขึ้น</div>
+
+    <div class="teacher-card">
+        <i class="ti ti-school teacher-avatar"></i>
+        <div class="teacher-info">
+            <span class="teacher-label athiti-text">อาจารย์ผู้สอน</span>
+            <span class="teacher-name charm-bold">อาจารย์ชวิศ วรสันต์</span>
         </div>
     </div>
-</div>
+</section>
 <div class="bottom-bar">
-    <span>กลุ่ม อ้ายมา — 4.5 คน</span>
-</div>
-    <div class="settings-overlay" id="settings-overlay" onclick="closeSettings(event)">
+  <div class="settings-overlay" id="settings-overlay" onclick="closeSettings(event)">
     <div class="settings-box">
         <button class="settings-close" onclick="closeSettings()">&times;</button>
         <div class="settings-avatar">👨‍🏫</div>
@@ -84,6 +71,9 @@
         <hr class="settings-divider">
         <p>วิชา ฟิสิกส์<br>การสั่นแบบฮาร์มอนิกอย่างง่าย<br>(Simple Harmonic Motion)</p>
     </div>
+  </div>
+<div class="bottom-bar">
+    <span>กลุ่ม อ้ายมา — 4.5 คน</span>
 </div>
 <script src="main.js"></script>
 </body>
