@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SHM Simulator</title>
+<title>SHM Simulator (Dual Spring)</title>
 <link rel="stylesheet" href="main.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,56 +11,120 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
-    <nav class="navbar">
+    
+<nav class="navbar">
   <span class="nav-brand">
     <i class="ti ti-wave-sine"></i> SHM Simulator
   </span>
   <div class="nav-links">
-    <a href="index.html">Simulator</a>
-    <a href="page2.html" class="active">make by</a>
+    <a href="index.html" class="active">Simulator</a>
+    <a href="page2.html">make by</a>
   </div>
   <div class="nav-actions">
     <button class="btn-icon" title="Settings" onclick="openSettings()">&#9881;</button>
   </div>
 </nav>
 
-<section class="credits-section">
-    <i class="ti ti-wave-sine credits-icon"></i>
-    <h1 class="charm-bold">ผู้จัดทำ</h1>
-    <p class="athiti-text credits-sub">สมาชิกกลุ่มอ้ายมา4.5คน</p>
+<canvas id="sim" width="800" height="360"></canvas>
 
-    <div class="team-grid">
-        <div class="team-card">
-            <i class="ti ti-user team-avatar"></i>
-            <span class="team-name charm-regular">นายศิวัช ศรีรัตนา</span>
-            <span class="team-meta athiti-text">ม.5/5 เลขที่ 20</span>
+<div class="controls-container">
+    <div class="control-group red-group">
+        <h3 class="group-title text-red">🟥 วัตถุสีแดง (ระบบที่ 1)</h3>
+        <div>
+            <label class="charm-regular">Mass มวล (m₁)</label>
+            <div class="input-wrap has-tooltip">
+                <input type="number" id="mass1" value="4" step="0.1">
+                <span class="unit-badge">kg</span>
+                <span class="tooltip-text">
+                    <span class="formula">T = 2π√(m/k)</span><br>
+                    มวลของวัตถุ มากขึ้น → คาบยาวขึ้น
+                </span>
+            </div>
         </div>
-        <div class="team-card">
-            <i class="ti ti-user team-avatar"></i>
-            <span class="team-name charm-regular">นายธนภัทร ปิโยปถัมภ์พงศ์</span>
-            <span class="team-meta athiti-text">ม.5/5 เลขที่ 22</span>
+        <div>
+            <label class="charm-regular">Spring Constant ค่า k₁</label>
+            <div class="input-wrap has-tooltip">
+                <input type="number" id="spring1" value="15" step="0.1">
+                <span class="unit-badge">N/m</span>
+                <span class="tooltip-text">
+                    <span class="formula">F = -kx</span><br>
+                    ค่านิจสปริง มากขึ้น → คาบสั้นลง (สั่นเร็วขึ้น)
+                </span>
+            </div>
         </div>
-        <div class="team-card">
-            <i class="ti ti-user team-avatar"></i>
-            <span class="team-name charm-regular">เจษฎากร วงษ์พล</span>
-            <span class="team-meta athiti-text">ม.5/5 เลขที่ 24</span>
+        <div>
+            <label class="charm-regular">Amplitude (A₁)</label>
+            <div class="input-wrap has-tooltip">
+                <input type="number" id="amp1" value="120" step="1">
+                <span class="unit-badge">m</span>
+                <span class="tooltip-text">
+                    <span class="formula">x(t) = A cos(ωt)</span><br>
+                    แอมพลิจูด คือการกระจัดที่มากที่สุดจากแนวสมดุล
+                </span>
+            </div>
         </div>
-        <div class="team-card">
-            <i class="ti ti-user team-avatar"></i>
-            <span class="team-name charm-regular">นายศุภาสิทธิ์ แสนหาญ</span>
-            <span class="team-meta athiti-text">ม.5/5 เลขที่ 29</span>
+        <div>
+            <label class="charm-regular">Acceleration ความเร่ง (a₁)</label>
+            <div class="input-wrap has-tooltip">
+                <input type="number" id="accel1" value="0" step="1">
+                <span class="unit-badge">m/s²</span>
+                <span class="tooltip-text">
+                    <span class="formula">a = -ω²x</span><br>
+                    ความเร่งแปรผันตรงกับการกระจัด ความเร่งแปรผันตรงกับการกระจัด และจะไม่มีผลกับสปริง(แนวนอน)
+                </span>
+            </div>
         </div>
     </div>
 
-    <div class="teacher-card">
-        <i class="ti ti-school teacher-avatar"></i>
-        <div class="teacher-info">
-            <span class="teacher-label athiti-text">อาจารย์ผู้สอน</span>
-            <span class="teacher-name charm-bold">อาจารย์ชวิศ วรสันต์</span>
+    <div class="control-group blue-group">
+        <h3 class="group-title text-blue">🟦 วัตถุสีน้ำเงิน (ระบบที่ 2)</h3>
+        <div>
+            <label class="charm-regular">Mass มวล (m₂)</label>
+            <div class="input-wrap has-tooltip">
+                <input type="number" id="mass2" value="6" step="0.1">
+                <span class="unit-badge">kg</span>
+                <span class="tooltip-text">
+                    <span class="formula">T = 2π√(m/k)</span><br>
+                    มวลของวัตถุ มากขึ้น → คาบยาวขึ้น
+                </span>
+            </div>
+        </div>
+        <div>
+            <label class="charm-regular">Spring Constant ค่า k₂</label>
+            <div class="input-wrap has-tooltip">
+                <input type="number" id="spring2" value="10" step="0.1">
+                <span class="unit-badge">N/m</span>
+                <span class="tooltip-text">
+                    <span class="formula">F = -kx</span><br>
+                    ค่านิจสปริง มากขึ้น → คาบสั้นลง (สั่นเร็วขึ้น)
+                </span>
+            </div>
+        </div>
+        <div>
+            <label class="charm-regular">Amplitude (A₂)</label>
+            <div class="input-wrap has-tooltip">
+                <input type="number" id="amp2" value="100" step="1">
+                <span class="unit-badge">m</span>
+                <span class="tooltip-text">
+                    <span class="formula">x(t) = A cos(ωt)</span><br>
+                    แอมพลิจูด คือการกระจัดที่มากที่สุดจากแนวสมดุล
+                </span>
+            </div>
+        </div>
+        <div>
+            <label class="charm-regular">Acceleration ความเร่ง (a₂)</label>
+            <div class="input-wrap has-tooltip">
+                <input type="number" id="accel2" value="0" step="1">
+                <span class="unit-badge">m/s²</span>
+                <span class="tooltip-text">
+                    <span class="formula">a = -ω²x</span><br>
+                    ความเร่งแปรผันตรงกับการกระจัด และจะไม่มีผลกับสปริง(แนวนอน)
+                </span>
+            </div>
         </div>
     </div>
-</section>
+</div>
+
 <div class="bottom-bar">
   <div class="settings-overlay" id="settings-overlay" onclick="closeSettings(event)">
     <div class="settings-box">
@@ -72,9 +136,9 @@
         <p>วิชา ฟิสิกส์<br>การสั่นแบบฮาร์มอนิกอย่างง่าย<br>(Simple Harmonic Motion)</p>
     </div>
   </div>
-<div class="bottom-bar">
-    <span>กลุ่ม อ้ายมา — 4.5 คน</span>
+  <span>กลุ่ม อ้ายมา — 4.5 คน</span>
 </div>
+
 <script src="main.js"></script>
 </body>
 </html>
