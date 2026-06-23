@@ -4,11 +4,16 @@ body {
     text-align: center;
     background-image: url('bg.png');
     background-size: cover;
+    margin: 0;
+    padding-bottom: 50px;
 }
 
 #sim {
     border: 2px solid black;
     background: #f5f5f5;
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
 }
 
 /* Navbar */
@@ -38,13 +43,11 @@ body {
     border-radius: 8px;
     text-decoration: none;
 }
-.nav-links a:hover,
-.nav-links a.active {
+.nav-links a:hover, .nav-links a.active {
     background: #f0f0f0;
     color: #111;
     font-weight: 700;
 }
-.nav-actions { display: flex; gap: 8px; }
 .btn-icon {
     background: none;
     border: 1px solid #ddd;
@@ -57,159 +60,60 @@ body {
 }
 .btn-icon:hover { background: #f0f0f0; }
 
-/* Controls */
-.controls {
+/* New Layout for Dual Controls */
+.controls-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px 40px;
-    margin-top: 20px;
+    gap: 24px;
+    max-width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.control-group {
+    background: rgba(255, 255, 255, 0.9);
     padding: 20px;
-    max-width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-}
-.controls > div {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    position: relative;   /* ← รวมไว้ที่เดียว */
-}
-.controls input {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* Tooltip */
-.tooltip {
-    display: none;
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    z-index: 99;
-    background: #222;
-    color: #fff;
-    border-radius: 10px;
-    padding: 10px 14px;
-    width: 220px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-    pointer-events: none;
-}
-.tooltip::before {
-    content: '';
-    position: absolute;
-    top: -6px;
-    left: 18px;
-    width: 12px;
-    height: 12px;
-    background: #222;
-    transform: rotate(45deg);
-    border-radius: 2px;
-}
-.tooltip .tt-formula {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    color: #7dd3fc;
-}
-.tooltip .tt-desc {
-    font-size: 12px;
-    color: #ccc;
-    line-height: 1.6;
-}
-.controls > div:hover .tooltip,
-.controls input:focus ~ .tooltip {
-    display: block;
-}
-
-/* Fonts */
-.charm-regular, .charm-bold {
-    font-family: "Charm", cursive;
-    font-weight: 700;
-}
-.athiti-text {
-    font-family: "Athiti", sans-serif;
-    font-weight: 400;
-}
-
-/* Credits / About page */
-.credits-section {
-    max-width: 720px;
-    margin: 50px auto 60px;
-    padding: 0 24px;
-}
-.credits-icon { font-size: 32px; color: #999; }
-.credits-section h1 { font-size: 32px; margin: 8px 0 4px; color: #222; }
-.credits-sub { font-size: 14px; color: #888; margin: 0 0 32px; }
-.team-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 24px;
-}
-.team-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    padding: 24px 16px;
-    background: #f5f5f5;
-    border: 2px solid black;
     border-radius: 12px;
-    transition: transform 0.15s ease;
-}
-.team-card:hover { transform: translateY(-3px); }
-.team-avatar {
-    font-size: 28px;
-    color: #555;
-    width: 48px;
-    height: 48px;
-    line-height: 48px;
-    border-radius: 50%;
-    background: #fff;
-    border: 1px solid #ddd;
-    margin-bottom: 4px;
-}
-.team-name { font-size: 16px; color: #222; }
-.team-meta { font-size: 13px; color: #777; }
-.teacher-card {
+    border: 2px solid #ddd;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     gap: 14px;
-    padding: 18px 24px;
-    background: #222;
-    border-radius: 12px;
+    text-align: left;
 }
-.teacher-avatar { font-size: 26px; color: #fff; }
-.teacher-info { display: flex; flex-direction: column; align-items: flex-start; }
-.teacher-label { font-size: 12px; color: #bbb; }
-.teacher-name { font-size: 18px; color: #fff; }
 
-@media (max-width: 560px) {
-    .team-grid { grid-template-columns: 1fr; }
-    .teacher-card { flex-direction: column; text-align: center; }
-    .teacher-info { align-items: center; }
+.red-group { border-color: #ffb3b3; box-shadow: 0 4px 10px rgba(255,0,0,0.05); }
+.blue-group { border-color: #b3d1ff; box-shadow: 0 4px 10px rgba(0,0,255,0.05); }
+
+.group-title {
+    margin: 0 0 5px 0;
+    font-family: "Athiti", sans-serif;
+    font-size: 16px;
 }
-.controls input {
+.text-red { color: #c0392b; }
+.text-blue { color: #2980b9; }
+
+.control-group > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.controls-container input {
     width: 100%;
     padding: 10px 48px 10px 14px;
-    font-size: 16px;
+    font-size: 15px;
     font-family: "Athiti", sans-serif;
     color: #111;
     background: #fff;
     border: 1.5px solid #ddd;
     border-radius: 10px;
     outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    -moz-appearance: textfield;
+    transition: border-color 0.2s;
 }
-.controls input:hover { border-color: #aaa; }
-.controls input:focus {
+.controls-container input:focus {
     border-color: #378ADD;
-    box-shadow: 0 0 0 3px rgba(55,138,221,0.12);
 }
 
-/* unit badge ขวาใน input */
 .input-wrap { position: relative; }
 .unit-badge {
     position: absolute;
@@ -220,131 +124,527 @@ body {
     color: #999;
     pointer-events: none;
 }
+
+/* Fonts */
+.charm-regular { font-family: "Charm", cursive; font-weight: 700; font-size: 14px; color: #444; }
+
+/* Bottom Bar & Overlay */
 .bottom-bar {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 36px;
-    background: #222;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    bottom: 0; left: 0; right: 0;
+    height: 36px; background: #222;
+    display: flex; align-items: center; justify-content: center;
     z-index: 100;
 }
+.bottom-bar span { font-family: "Athiti", sans-serif; font-size: 13px; color: #bbb; }
 
-.bottom-bar span {
-    font-family: "Athiti", sans-serif;
-    font-size: 13px;
-    color: #bbb;
-    letter-spacing: 0.5px;
-}
-body {
-    text-align: center;
-    padding-bottom: 36px;
-}
-/* canvas ไม่ล้นหน้าจอ */
-#sim {
-    max-width: 100%;
-    height: auto;
-}
-
-@media (max-width: 600px) {
-    /* controls เป็น 1 คอลัมน์ */
-    .controls {
-        grid-template-columns: 1fr;
-        max-width: 90%;
-        gap: 20px;
-    }
-
-    /* navbar ย่อ */
-    .nav-brand {
-        font-size: 13px;
-    }
-    .nav-links a {
-        padding: 6px 8px;
-        font-size: 12px;
-    }
-
-    /* tooltip ไม่ล้นขอบ */
-    .tooltip {
-        width: 180px;
-    }
-
-    /* bottom bar text เล็กลง */
-    .bottom-bar span {
-        font-size: 11px;
-    }
-}
 .settings-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 300;
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4); z-index: 300;
+    align-items: center; justify-content: center;
+}
+.settings-overlay.open { display: flex; }
+.settings-box {
+    background: #fff; border: 2px solid #222; border-radius: 16px;
+    padding: 32px; width: 320px; position: relative; text-align: center;
+}
+.settings-avatar { font-size: 48px; margin-bottom: 8px; }
+.settings-box h2 { font-family: 'Charm', cursive; font-size: 22px; margin: 0 0 4px; }
+.settings-box .settings-role { font-family: 'Athiti', sans-serif; font-size: 14px; color: #888; margin: 0 0 20px; }
+.settings-divider { border: none; border-top: 1px solid #eee; margin: 0 0 16px; }
+.settings-box p { font-family: 'Athiti', sans-serif; font-size: 14px; color: #555; line-height: 1.7; margin: 0; }
+.settings-close { position: absolute; top: 12px; right: 14px; background: none; border: none; font-size: 22px; cursor: pointer; color: #aaa; }
+
+@media (max-width: 768px) {
+    .controls-container { grid-template-columns: 1fr; max-width: 95%; }
+}
+/* เพิ่มต่อท้ายไฟล์ main.css เดิมได้เลยครับ */
+.controls-container input[readonly] {
+    background: #f4f4f4;
+    color: #555;
+    cursor: default;
+    border-color: #ddd;
+}
+.controls-container input[readonly]:focus {
+    border-color: #ddd;
+    box-shadow: none;
+}
+/* ==========================================================================
+   CSS สำหรับหน้าผู้จัดทำ (page2.html) ตามดีไซน์ในรูปภาพ
+   ========================================================================== */
+
+/* ปรับให้หน้าผู้จัดทำใช้พื้นหลังลายหินอ่อน (ถ้าเปลี่ยนใจใช้ไฟล์รูป สามารถเปลี่ยน 'bg.png' เป็นชื่อรูปหินอ่อนได้ครับ) */
+body:has(.credits-section) {
+    background-image: url('bg.png'); 
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* ส่วนคอนเทนเนอร์หลัก */
+.credits-section {
+    max-width: 1000px;
+    margin: 40px auto 80px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ไอคอนคลื่นคล้ายโลโก้ด้านบนหัวข้อ */
+.credits-icon {
+    font-size: 28px;
+    color: #888;
+    margin-bottom: -5px;
+}
+
+/* หัวข้อ "ผู้จัดทำ" */
+.credits-section h1.charm-bold {
+    font-family: 'Charm', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #222;
+    margin: 5px 0;
+}
+
+/* คำบรรยายกลุ่มย่อย */
+.credits-sub {
+    font-family: 'Athiti', sans-serif;
+    font-size: 16px;
+    color: #666;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+/* การจัดวางการ์ดนักเรียนแบบ Grid 2x2 */
+.team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 850px;
+    margin-bottom: 25px;
+}
+
+/* ตัวกล่องการ์ดรายชื่อนักเรียน */
+.team-card {
+    background: rgba(248, 249, 250, 0.95);
+    border: 2px solid #111;
+    border-radius: 14px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
 }
 
-.settings-overlay.open {
-    display: flex;
-}
-
-.settings-box {
+/* ไอคอนรูปคนในกล่อง */
+.team-avatar {
+    font-size: 26px;
+    color: #555;
     background: #fff;
-    border: 2px solid #222;
-    border-radius: 16px;
-    padding: 32px;
-    width: 320px;
-    position: relative;
-    text-align: center;
+    border: 1.5px solid #ddd;
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
 }
 
-.settings-avatar {
-    font-size: 48px;
-    margin-bottom: 8px;
-}
-
-.settings-box h2 {
-    font-family: 'Charm', cursive;
+/* ชื่อนักเรียน */
+.team-name {
+    font-family: 'Charm', serif;
     font-size: 22px;
-    color: #222;
-    margin: 0 0 4px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 5px;
 }
 
-.settings-box .settings-role {
+/* ชั้นมัธยมและเลขที่ */
+.team-meta {
     font-family: 'Athiti', sans-serif;
     font-size: 14px;
     color: #888;
-    margin: 0 0 20px;
 }
 
-.settings-divider {
-    border: none;
-    border-top: 1px solid #eee;
-    margin: 0 0 16px;
+/* การ์ดอาจารย์ผู้สอน (แถบสีดำยาวด้านล่าง) */
+.teacher-card {
+    background: #222;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 850px;
+    padding: 18px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.settings-box p {
+/* ไอคอนหมวกปริญญาของอาจารย์ */
+.teacher-avatar {
+    font-size: 24px;
+    color: #fff;
+}
+
+/* กล่องข้อความข้างในแถบอาจารย์ */
+.teacher-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+/* ตัวหนังสือ "อาจารย์ผู้สอน" */
+.teacher-label {
+    font-family: 'Athiti', sans-serif;
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 2px;
+}
+
+/* ชื่ออาจารย์ชวิศ */
+.teacher-name {
+    font-family: 'Charm', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* รองรับการแสดงผลบนหน้าจอมือถือ (ปรับให้เรียงเดี่ยวอัตโนมัติ) */
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    .teacher-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    .teacher-info {
+        align-items: center;
+    }
+}
+/* ==========================================================================
+   CSS สำหรับหน้าผู้จัดทำ (page2.html) + ลูกเล่นตอนเอาเมาส์ชี้ (Hover Effect)
+   ========================================================================== */
+
+/* ปรับให้หน้าผู้จัดทำใช้พื้นหลังลายหินอ่อน */
+body:has(.credits-section) {
+    background-image: url('bg.png'); 
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* ส่วนคอนเทนเนอร์หลัก */
+.credits-section {
+    max-width: 1000px;
+    margin: 40px auto 80px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ไอคอนคลื่นด้านบนหัวข้อ */
+.credits-icon {
+    font-size: 28px;
+    color: #888;
+    margin-bottom: -5px;
+}
+
+/* หัวข้อ "ผู้จัดทำ" */
+.credits-section h1.charm-bold {
+    font-family: 'Charm', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #222;
+    margin: 5px 0;
+}
+
+/* คำบรรยายกลุ่มย่อย */
+.credits-sub {
+    font-family: 'Athiti', sans-serif;
+    font-size: 16px;
+    color: #666;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+/* การจัดวางการ์ดนักเรียนแบบ Grid 2x2 */
+.team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 850px;
+    margin-bottom: 25px;
+}
+
+/* ตัวกล่องการ์ดรายชื่อนักเรียน */
+.team-card {
+    background: rgba(248, 249, 250, 0.95);
+    border: 2px solid #111;
+    border-radius: 14px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    
+    /* สปีดในการเล่นแอนิเมชันตอนเมาส์ชี้ */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* ✨ ลูกเล่นตอนเอาเมาส์ชี้การ์ดนักเรียน: กล่องจะลอยขึ้นและเงาจะฟุ้งขึ้น */
+.team-card:hover {
+    transform: translateY(-6px);
+    background: #ffffff;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+    border-color: #000;
+}
+
+/* ไอคอนรูปคนในกล่อง */
+.team-avatar {
+    font-size: 26px;
+    color: #555;
+    background: #fff;
+    border: 1.5px solid #ddd;
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+/* ✨ ลูกเล่นเพิ่ม: เมื่อชี้ที่กล่อง ให้ไอคอนคนขยับขยายขึ้นนิดนึง */
+.team-card:hover .team-avatar {
+    transform: scale(1.1);
+    border-color: #111;
+    color: #111;
+}
+
+/* ชื่อนักเรียน */
+.team-name {
+    font-family: 'Charm', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 5px;
+}
+
+/* ชั้นมัธยมและเลขที่ */
+.team-meta {
     font-family: 'Athiti', sans-serif;
     font-size: 14px;
-    color: #555;
-    line-height: 1.7;
-    margin: 0;
+    color: #888;
 }
 
-.settings-close {
-    position: absolute;
-    top: 12px;
-    right: 14px;
-    background: none;
-    border: none;
-    font-size: 22px;
+/* การ์ดอาจารย์ผู้สอน (แถบสีดำยาวด้านล่าง) */
+.teacher-card {
+    background: #222;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 850px;
+    padding: 18px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
     cursor: pointer;
-    color: #aaa;
-    line-height: 1;
 }
 
-.settings-close:hover {
-    color: #222;
+/* ✨ ลูกเล่นตอนเอาเมาส์ชี้แถบอาจารย์: เปลี่ยนพื้นหลังให้สว่างขึ้นเล็กน้อย */
+.teacher-card:hover {
+    background: #333;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* ไอคอนหมวกปริญญาของอาจารย์ */
+.teacher-avatar {
+    font-size: 24px;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+/* ✨ ลูกเล่นเมื่อชี้แถบอาจารย์: ให้หมวกหมุนเอียงเล็กน้อยดูมีชีวิตชีวา */
+.teacher-card:hover .teacher-avatar {
+    transform: rotate(-10deg) scale(1.1);
+}
+
+/* กล่องข้อความข้างในแถบอาจารย์ */
+.teacher-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+/* ตัวหนังสือ "อาจารย์ผู้สอน" */
+.teacher-label {
+    font-family: 'Athiti', sans-serif;
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 2px;
+}
+
+/* ชื่ออาจารย์ชวิศ */
+.teacher-name {
+    font-family: 'Charm', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* รองรับการแสดงผลบนหน้าจอมือถือ */
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    .teacher-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    .teacher-info {
+        align-items: center;
+    }
+}
+#sim {
+    border: 2px solid black;
+    background: #f5f5f5;
+    width: 100%;
+    max-width: 960px; /* ขยายความกว้างสูงสุดเล็กน้อยเพื่อให้เก็บทั้งสปริง ข้อมูล และกราฟได้พอดี */
+    height: auto;
+    margin-top: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+/* 1. กำหนดให้กลุ่ม Input เป็นจุดอ้างอิงของ Tooltip */
+.input-group {
+  position: relative;
+  display: inline-block;
+  width: 100%; /* หรือปรับตามความกว้างเดิมของฟอร์ม */
+  margin-bottom: 15px;
+}
+
+/* 2. สไตล์พื้นฐานของกล่อง Tooltip (ซ่อนไว้ก่อนเริ่มต้น) */
+.input-group .tooltip-text {
+  visibility: hidden;
+  width: max-content;
+  max-width: 250px;
+  background-color: #1e1e1e; /* สีดำโทนเข้ม */
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  
+  /* จัดตำแหน่งให้อยู่ใต้ช่อง Input พอดี */
+  position: absolute;
+  z-index: 99;
+  top: 105%; /* โผล่ใต้ Input */
+  left: 20px; /* ขยับเยื้องมาทางซ้ายเพื่อให้ตรงกับติ่ง */
+  
+  /* เอฟเฟกต์ค่อยๆ เฟดตอนแสดงผล */
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* สไตล์เฉพาะสำหรับสูตรฟิสิกส์สีฟ้า */
+.input-group .tooltip-text .formula {
+  color: #64d2ff; /* สีฟ้าสว่างแบบในรูป */
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace; /* ใช้ฟอนต์แนวสมการ */
+}
+
+/* 3. สร้างติ่งสามเหลี่ยม (Arrow) ชี้ขึ้นด้านบน */
+.input-group .tooltip-text::before {
+  content: "";
+  position: absolute;
+  bottom: 100%; /* อยู่ด้านบนสุดของกล่องดำ */
+  left: 20px; /* ตำแหน่งติ่ง ให้ตรงกับที่ตั้งค่าไว้ */
+  margin-left: -6px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent #1e1e1e transparent; /* สามเหลี่ยมชี้ขึ้น */
+}
+
+/* 4. เมื่อเมาส์ชี้ที่ช่อง Input หรือตัวกลุ่ม ให้แสดง Tooltip ออกมา */
+.input-group:hover .tooltip-text,
+.input-group input:focus + .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+.has-tooltip {
+  position: relative;
+}
+
+/* กล่องข้อความ Tooltip (ซ่อนไว้เริ่มต้น) */
+.has-tooltip .tooltip-text {
+  visibility: hidden;
+  width: max-content;
+  min-width: 200px;
+  background-color: #1e1e1e; /* สีดำเข้ม */
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  font-family: 'Athiti', sans-serif;
+  
+  /* จัดตำแหน่งให้อยู่ใต้ช่อง Input */
+  position: absolute;
+  z-index: 99;
+  top: 110%; 
+  left: 15px; 
+  
+  /* เอฟเฟกต์เฟดนุ่ม ๆ */
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* สไตล์สีตัวเลขสูตรฟิสิกส์ (สีฟ้าสว่าง) */
+.has-tooltip .tooltip-text .formula {
+  color: #64d2ff;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* สร้างติ่งสามเหลี่ยมชี้ขึ้น */
+.has-tooltip .tooltip-text::before {
+  content: "";
+  position: absolute;
+  bottom: 100%; 
+  left: 20px; 
+  margin-left: -6px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent #1e1e1e transparent;
+}
+
+/* เมื่อเมาส์โฟกัสหรือชี้ที่กล่องข้อมูล ให้แสดง Tooltip */
+.has-tooltip:hover .tooltip-text,
+.has-tooltip input:focus + .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
 }
