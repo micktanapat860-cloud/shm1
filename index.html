@@ -33,7 +33,7 @@
         <div>
             <label class="charm-regular">Mass มวล (m₁)</label>
             <div class="input-wrap has-tooltip">
-                <input type="number" id="mass1" value="4" step="0.1">
+                <input type="number" id="mass1" value="4" step="1">
                 <span class="unit-badge">kg</span>
                 <span class="tooltip-text">
                     <span class="formula">T = 2π√(m/k)</span><br>
@@ -44,7 +44,7 @@
         <div>
             <label class="charm-regular">Spring Constant ค่า k₁</label>
             <div class="input-wrap has-tooltip">
-                <input type="number" id="spring1" value="15" step="0.1">
+                <input type="number" id="spring1" value="15" step="1">
                 <span class="unit-badge">N/m</span>
                 <span class="tooltip-text">
                     <span class="formula">F = -kx</span><br>
@@ -64,13 +64,13 @@
             </div>
         </div>
         <div>
-            <label class="charm-regular">Acceleration ความเร่ง (a₁)</label>
+            <label class="charm-regular">G-Force แรง G (G₁)</label>
             <div class="input-wrap has-tooltip">
-                <input type="number" id="accel1" value="0" step="1">
-                <span class="unit-badge">m/s²</span>
+                <input type="number" id="gforce1" value="0" step="1">
+                <span class="unit-badge">G</span>
                 <span class="tooltip-text">
-                    <span class="formula">a = -ω²x</span><br>
-                    ความเร่งแปรผันตรงกับการกระจัด ความเร่งแปรผันตรงกับการกระจัด และจะไม่มีผลกับสปริง(แนวนอน)
+                    <span class="formula">F_ext = m · g · G</span><br>
+                    แรงดันภายนอกในหน่วย G-Force มีผลเลื่อนจุดสมดุลของสปริง
                 </span>
             </div>
         </div>
@@ -81,7 +81,7 @@
         <div>
             <label class="charm-regular">Mass มวล (m₂)</label>
             <div class="input-wrap has-tooltip">
-                <input type="number" id="mass2" value="6" step="0.1">
+                <input type="number" id="mass2" value="6" step="1">
                 <span class="unit-badge">kg</span>
                 <span class="tooltip-text">
                     <span class="formula">T = 2π√(m/k)</span><br>
@@ -92,7 +92,7 @@
         <div>
             <label class="charm-regular">Spring Constant ค่า k₂</label>
             <div class="input-wrap has-tooltip">
-                <input type="number" id="spring2" value="10" step="0.1">
+                <input type="number" id="spring2" value="10" step="1">
                 <span class="unit-badge">N/m</span>
                 <span class="tooltip-text">
                     <span class="formula">F = -kx</span><br>
@@ -112,13 +112,13 @@
             </div>
         </div>
         <div>
-            <label class="charm-regular">Acceleration ความเร่ง (a₂)</label>
+            <label class="charm-regular">G-Force แรง G (G₂)</label>
             <div class="input-wrap has-tooltip">
-                <input type="number" id="accel2" value="0" step="1">
-                <span class="unit-badge">m/s²</span>
+                <input type="number" id="gforce2" value="0" step="1">
+                <span class="unit-badge">G</span>
                 <span class="tooltip-text">
-                    <span class="formula">a = -ω²x</span><br>
-                    ความเร่งแปรผันตรงกับการกระจัด และจะไม่มีผลกับสปริง(แนวนอน)
+                    <span class="formula">T=2π√(L/g)</span><br>
+                    จะไม่เกิดการเปลี่ยนแปลงเพราะแรงGเป็นแรงในแนวดิ่ง
                 </span>
             </div>
         </div>
