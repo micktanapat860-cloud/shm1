@@ -1516,3 +1516,33 @@ body:has(.credits-section) {
         padding: 32px 24px !important; /* ปรับช่องไฟในมือถือให้กระชับขึ้นแต่ยังอยู่ตรงกลาง */
     }
 }
+/* ==========================================================================
+   CSS เปลี่ยนฟอนต์ข้อความหน้าแรกเป็นฟอนต์ "Charm"
+   ========================================================================== */
+
+/* 1. เปลี่ยนฟอนต์ในช่องกรอกข้อมูล (Inputs) และป้ายกำกับทั้งหมดในหน้าแรก */
+.control-group,
+.control-group label,
+.control-group input,
+.control-group span,
+.control-group .unit {
+    font-family: 'Charm', serif !important;
+    font-size: 16px !important; /* ปรับขนาดขึ้นเล็กน้อยเพื่อให้ฟอนต์ Charm อ่านง่ายชัดเจน */
+    font-weight: 700 !important; /* เน้นตัวหนาให้ลายเส้นฟอนต์คมชัด */
+}
+
+/* ปรับเฉพาะหัวข้อกลุ่มระบบ (วัตถุสีแดง / วัตถุสีน้ำเงิน) */
+.control-group h3, 
+.control-group h2 {
+    font-family: 'Charm', serif !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+}
+
+/* 2. เปลี่ยนฟอนต์ของคำอธิบายและอินเตอร์เฟสรอบๆ Canvas */
+body, 
+.navbar a {
+    font-family: 'Charm', serif !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+}
