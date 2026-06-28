@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SHM Simulator</title>
+<link rel="stylesheet" href="main.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Athiti:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+
+    <nav class="navbar">
+  <span class="nav-brand">
+    <i class="ti ti-wave-sine"></i> SHM Simulator
+  </span>
+  <div class="nav-links">
+    <a href="index.html">Simulator</a>
+    <a href="page2.html">make by</a>
+    <a href="page3.html"class="active">about</a>
+  </div>
+  <div class="nav-actions">
+    <button class="btn-icon" title="Settings" onclick="openSettings()">&#9881;</button>
+  </div>
+</nav>
+    </nav>
+
+    <div class="learn-container">
+        <header class="learn-header">
+            <h1>สรุปเรื่อง Simple Harmonic Motion (SHM)</h1>
+            <p>เรียนรู้การเคลื่อนที่แบบฮาร์มอนิกอย่างง่ายผ่านระบบมวลติดสปริงในแนวราบ</p>
+        </header>
+
+        <section class="learn-card">
+            <h2>❓ SHM คืออะไร?</h2>
+            <p><strong>Simple Harmonic Motion (การเคลื่อนที่แบบฮาร์มอนิกอย่างง่าย)</strong> คือ การเคลื่อนที่กลับไปกลับมาซ้ำรอยเดิมผ่าน <strong>ตำแหน่งสมดุล (Equilibrium Position)</strong> โดยมีแรงดึงกลับที่แปรผันตรงกับระยะกระจัด แต่มีทิศทางตรงกันข้ามเสมอ</p>
+            <div class="highlight-box">
+                📌 <strong>คีย์เวิร์ดสำคัญ:</strong> ไม่มีการสูญเสียพลังงาน (ไม่มีแรงเสียดทาน) แอมพลิจูดและคาบการสั่นจะคงที่ตลอดกาล
+            </div>
+        </section>
+
+        <section class="learn-card">
+            <h2>🛒 ระบบมวลติดสปริงแนวนอน (Horizontal Spring System)</h2>
+            <p>ในแบบจำลองแนวราบ แรงโน้มถ่วงหรือแรง G จะ<strong>ไม่มีผล</strong>ต่อการสั่นเนื่องจากทิศทางตั้งฉากกับการเคลื่อนที่ แรงหลักที่ขับเคลื่อนระบบคือ <strong>แรงดึงกลับของสปริง (Restoring Force)</strong> ตามกฎของฮุค (Hooke's Law):</p>
+            <div class="formula-block">F = -kx</div>
+            <ul>
+                <li><strong>F :</strong> แรงดึงกลับของสปริง (นิวตัน)</li>
+                <li><strong>k :</strong> ค่านิจสปริง หรือ Spring Constant (N/m) บอกถึงความแข็งของสปริง</li>
+                <li><strong>x :</strong> ระยะกระจัดจากจุดสมดุล (เมตร)</li>
+            </ul>
+        </section>
+
+        <section class="learn-card">
+            <h2>📐 สูตรคำนวณสำคัญที่ใช้ใน Simulator</h2>
+            <p>ความเร็วในการสั่นไม่ได้ขึ้นอยู่กับว่าเราดึงวัตถุออกมาแรงแค่ไหน (Amplitude ไม่ส่งผลต่อเวลา) แต่ขึ้นอยู่กับ <strong>มวล (m)</strong> และ <strong>ค่า k</strong> เท่านั้น:</p>
+            
+            <div class="grid-formulas">
+                <div class="formula-card">
+                    <h3>ความถี่เชิงมุม (ω₀)</h3>
+                    <div class="mini-formula">ω = √(k / m)</div>
+                    <p>หน่วย: rad/s</p>
+                </div>
+                <div class="formula-card">
+                    <h3>คาบการสั่น (T)</h3>
+                    <div class="mini-formula">T = 2π√(m / k)</div>
+                    <p>เวลาที่ใช้สั่นครบ 1 รอบ (วินาที)</p>
+                </div>
+                <div class="formula-card">
+                    <h3>ความถี่ (f)</h3>
+                    <div class="mini-formula">f = 1 / T</div>
+                    <p>จำนวนรอบที่สั่นได้ใน 1 วินาที (Hz)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="learn-card">
+            <h2>📈 สมการกราฟไซน์ (Kinematics of SHM)</h2>
+            <p>เมื่อปล่อยวัตถุจากจุดไกลที่สุด ($x = A$) ณ เวลา $t = 0$ ตำแหน่ง ความเร็ว และความเร่ง จะเปลี่ยนไปตามเวลาในรูปของฟังก์ชันตรีโกณมิติ:</p>
+            <table class="formula-table">
+    <thead>
+        <tr>
+            <th>ปริมาณ</th>
+            <th>สมการคำนวณในโค้ด</th>
+            <th>ค่าสูงสุด</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>ตำแหน่ง (x)</strong></td>
+            <td>x = A cos(ωt)</td>
+            <td>x<sub>max</sub> = A</td> </tr>
+        <tr>
+            <td><strong>ความเร็ว (v)</strong></td>
+            <td>v = -Aω sin(ωt)</td>
+            <td>v<sub>max</sub> = Aω</td>
+        </tr>
+        <tr>
+            <td><strong>ความเร่ง (a)</strong></td>
+            <td>a = -ω²x</td>
+            <td>a<sub>max</sub> = Aω²</td>
+        </tr>
+    </tbody>
+</table>
+            <div class="highlight-box alert-box">
+                💡 <strong>ข้อสังเกตจาก Simulator:</strong> เมื่อเราปรับ <strong>Amplitude (A) เป็น 0</strong> วัตถุจะนิ่งสนิทอยู่ที่จุดสมดุล ความเร็วและความเร่งกลายเป็น 0 และเวลา t ในระบบจะถูกสั่งให้หยุดนับทันที!
+            </div>
+        </section>
+    </div>
+
+    <div class="bottom-bar">
+  <div class="settings-overlay" id="settings-overlay" onclick="closeSettings(event)">
+    <div class="settings-box">
+        <button class="settings-close" onclick="closeSettings()">&times;</button>
+        <div class="settings-avatar">👨‍🏫</div>
+        <h2>อาจารย์ชวิศ วรสันต์</h2>
+        <p class="settings-role">ที่ปรึกษาโครงงาน</p>
+        <hr class="settings-divider">
+        <p>วิชา ฟิสิกส์<br>การสั่นแบบฮาร์มอนิกอย่างง่าย<br>(Simple Harmonic Motion)</p>
+    </div>
+  </div>
+  <span>กลุ่ม อ้ายมา — 4.5 คน</span>
+</div>
+
+</body>
+</html>
