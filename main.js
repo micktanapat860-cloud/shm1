@@ -22,20 +22,24 @@ window.addEventListener('resize', () => { resizeCanvas(); restart(); });
 let sys1 = { mass: 4, k: 15, amp: 120, omega: 0, x: 0, v: 0, accel: 0 }; 
 let sys2 = { mass: 6, k: 10, amp: 100, omega: 0, x: 0, v: 0, accel: 0 }; 
 
-let t = 0;
+// ⏱️ แยกตัวแปรเวลาเป็น t1 และ t2 เพื่อให้ควบคุมอิสระแยกจากกันได้
+let t1 = 0; 
+let t2 = 0; 
 let animId   = null;
 let lastTime = null;
 
-// ─── Read inputs ─────────────────────────────────────────────────────────────
+// ─── Read inputs (แก้ไขให้ยอมรับค่า 0 ได้ ไม่เด้งกลับเป็นค่าเริ่มต้น) ───
 function readParams() {
+  const inputAmp1 = parseFloat(document.getElementById("amp1").value);
   sys1.mass   = parseFloat(document.getElementById("mass1").value) || 4;
   sys1.k      = parseFloat(document.getElementById("spring1").value) || 15;
-  sys1.amp    = parseFloat(document.getElementById("amp1").value) || 120;
+  sys1.amp    = isNaN(inputAmp1) ? 120 : inputAmp1;
   sys1.omega  = Math.sqrt(sys1.k / sys1.mass);
 
+  const inputAmp2 = parseFloat(document.getElementById("amp2").value);
   sys2.mass   = parseFloat(document.getElementById("mass2").value) || 6;
   sys2.k      = parseFloat(document.getElementById("spring2").value) || 10;
-  sys2.amp    = parseFloat(document.getElementById("amp2").value) || 100;
+  sys2.amp    = isNaN(inputAmp2) ? 100 : inputAmp2;
   sys2.omega  = Math.sqrt(sys2.k / sys2.mass);
 }
 
@@ -252,7 +256,7 @@ function drawInfo() {
   ctx.fillText(`x  = ${sys1.x.toFixed(1)} m`, startX + 12, currentY += 14);
   ctx.fillText(`v  = ${sys1.v.toFixed(1)} m/s`, startX + 12, currentY += 14);
   ctx.fillText(`a  = ${sys1.accel.toFixed(1)} m/s²`, startX + 12, currentY += 14); 
-  ctx.fillText(`t  = ${t.toFixed(2)} s`, startX + 12, currentY += 14); 
+  ctx.fillText(`t  = ${t1.toFixed(2)} s`, startX + 12, currentY += 14); // ปรับแสดง t1
 
   ctx.strokeStyle = "#e8e8e8";
   ctx.lineWidth = 1;
@@ -274,7 +278,7 @@ function drawInfo() {
   ctx.fillText(`x  = ${sys2.x.toFixed(1)} m`, startX + 12, currentY += 14);
   ctx.fillText(`v  = ${sys2.v.toFixed(1)} m/s`, startX + 12, currentY += 14);
   ctx.fillText(`a  = ${sys2.accel.toFixed(1)} m/s²`, startX + 12, currentY += 14); 
-  ctx.fillText(`t  = ${t.toFixed(2)} s`, startX + 12, currentY += 14); 
+  ctx.fillText(`t  = ${t2.toFixed(2)} s`, startX + 12, currentY += 14); // ปรับแสดง t2
 }
 
 // ─── Main render ─────────────────────────────────────────────────────────────
@@ -282,29 +286,55 @@ function render(timestamp) {
   if (!lastTime) lastTime = timestamp;
   const dt = Math.min((timestamp - lastTime) / 1000, 0.05);
   lastTime = timestamp;
-  t += dt;
+
+  // ⏱️ เงื่อนไขสำคัญ: ถ้า Amplitude เป็น 0 เวลา t ในระบบจะถูกสั่งให้หยุดนับ (และเป็น 0) ทันที!
+  if (sys1.amp !== 0) {
+    t1 += dt;
+  } else {
+    t1 = 0; 
+  }
+
+  if (sys2.amp !== 0) {
+    t2 += dt;
+  } else {
+    t2 = 0;
+  }
 
   const CX     = (canvas.width - 450) / 2 + 55; 
   const WALL_X = 50;
 
-  // คำนวณระบบที่ 1 (แดง) - ตัดการใช้ shift ออกไปทั้งหมดสั่นรอบจุดสมดุลปกติ
-  sys1.x = sys1.amp * Math.cos(sys1.omega * t);
-  sys1.v = -sys1.amp * sys1.omega * Math.sin(sys1.omega * t);
-  sys1.accel = -sys1.omega * sys1.omega * sys1.x; 
+  // 🟥 คำนวณระบบที่ 1 (แดง)
+  if (sys1.amp === 0) {
+    sys1.x = 0;
+    sys1.v = 0;
+    sys1.accel = 0;
+  } else {
+    sys1.x = sys1.amp * Math.cos(sys1.omega * t1); // เปลี่ยนมาใช้ t1
+    sys1.v = -sys1.amp * sys1.omega * Math.sin(sys1.omega * t1);
+    sys1.accel = -sys1.omega * sys1.omega * sys1.x;
+  }
   const blockX1 = CX + sys1.x - BLOCK_W / 2;
 
+  // 🟦 คำนวณระบบที่ 2 (น้ำเงิน)
+  if (sys2.amp === 0) {
+    sys2.x = 0;
+    sys2.v = 0;
+    sys2.accel = 0;
+  } else {
+    sys2.x = sys2.amp * Math.cos(sys2.omega * t2); // เปลี่ยนมาใช้ t2
+    sys2.v = -sys2.amp * sys2.omega * Math.sin(sys2.omega * t2);
+    sys2.accel = -sys2.omega * sys2.omega * sys2.x;
+  }
+  const blockX2 = CX + sys2.x - BLOCK_W / 2;
+
+  // 📈 บันทึกตำแหน่งลงประวัติกราฟ (ถ้าแอมป์เป็น 0 ให้บันทึกเลข 0 ตลอดแนว)
   graphHistory1.push(sys1.x);
   if (graphHistory1.length > MAX_GRAPH_POINTS) graphHistory1.shift();
-
-  // คำนวณระบบที่ 2 (น้ำเงิน)
-  sys2.x = sys2.amp * Math.cos(sys2.omega * t);
-  sys2.v = -sys2.amp * sys2.omega * Math.sin(sys2.omega * t);
-  sys2.accel = -sys2.omega * sys2.omega * sys2.x;
-  const blockX2 = CX + sys2.x - BLOCK_W / 2;
 
   graphHistory2.push(sys2.x);
   if (graphHistory2.length > MAX_GRAPH_POINTS) graphHistory2.shift();
 
+  // เคลียร์หน้าจอแล้ววาดใหม่ทั้งหมด
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   drawEnvironment(WALL_X);
@@ -321,6 +351,7 @@ function render(timestamp) {
   drawBlock(blockX2, 250, "#2980b9", "m₂");
   drawVectorArrow(CX, CX + sys2.x, 250 - BLOCK_H / 2 - 15, "#2980b9", `x = ${sys2.x.toFixed(1)} px`);
 
+  // วาดกราฟและข้อมูลข้อมูล
   const graphW = 200;
   const graphH = 100;
   const graphLeft = canvas.width - 430; 
@@ -335,7 +366,8 @@ function render(timestamp) {
 
 function restart() {
   if (animId) cancelAnimationFrame(animId);
-  t        = 0;
+  t1       = 0; // ล้างค่าเวลา t1
+  t2       = 0; // ล้างค่าเวลา t2
   lastTime = null;
   graphHistory1 = [];
   graphHistory2 = [];
@@ -343,7 +375,7 @@ function restart() {
   animId = requestAnimationFrame(render);
 }
 
-// อัปเดตกลับมาดักฟัง input แค่มวล ค่า k และแอมพลิจูด (ส่วนช่อง G-Force บนหน้าจอตอนนี้จะไม่ส่งผลใด ๆ ต่อความเร็วหรือตำแหน่งแล้ว)
+// อัปเดตกลับมาดักฟัง input แค่มวล ค่า k และแอมพลิจูด 
 ["mass1", "spring1", "amp1", "mass2", "spring2", "amp2"].forEach(id => {
   document.getElementById(id).addEventListener("input", restart);
 });
