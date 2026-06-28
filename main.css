@@ -1298,3 +1298,221 @@ body:has(.credits-section) {
   opacity: 1;
   transform: translateY(0);
 }
+/* ==========================================================================
+   CSS ตกแต่งข้อความเฉพาะในหน้าเรียนรู้ (ไม่ยุ่งกับหน้าจำลองและแถบบน/ล่าง)
+   ========================================================================== */
+
+/* ตกแต่งหัวข้อใหญ่ประจำหน้า */
+.learn-header h1 {
+    font-family: 'Athiti', sans-serif;
+    font-weight: 700;
+    font-size: 34px;
+    color: #1a202c; /* สีเข้มขึ้นเพื่อความคมชัด */
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+}
+
+/* ตกแต่งคำอธิบายใต้หัวข้อใหญ่ */
+.learn-header p {
+    font-size: 16px;
+    color: #4a5568;
+    line-height: 1.5;
+}
+
+/* ตกแต่งหัวข้อย่อยประจำการ์ดเนื้อหา (❓, 🛒, 📐, 📈) */
+.learn-card h2 {
+    font-family: 'Athiti', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: #2b6cb0; /* ใช้สีฟ้าโทนเย็นเพื่อให้อ่านแล้วสบายตา */
+    border-bottom: 2px solid #e2e8f0; /* เพิ่มเส้นขีดคั่นใต้หัวข้อให้ดูเป็นสัดส่วน */
+    padding-bottom: 8px;
+    margin-bottom: 18px;
+}
+
+/* ตกแต่งข้อความเนื้อหาทั่วไปให้เว้นบรรทัดสวยและอ่านง่ายขึ้น */
+.learn-card p {
+    font-size: 15.5px;
+    line-height: 1.75; /* เพิ่มช่องว่างระหว่างบรรทัด ไม่ให้ตัวอักษรเบียดกันเกินไป */
+    color: #2d3748;
+}
+
+/* ตกแต่งตัวหนา (Strong) ภายในเนื้อหาให้เด่นออกมา */
+.learn-card strong {
+    color: #000000;
+    font-weight: 700;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 70%, #fef08a 30%); /* ไฮไลท์สีเหลืองจางๆ ที่พื้นหลัง */
+}
+
+/* ตกแต่งข้อความแบบรายการ (Bullet Points) */
+.learn-card ul li {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+    color: #4a5568;
+}
+
+/* ตกแต่งข้อความตัวหนาที่เป็นหัวข้อในลิสต์ */
+.learn-card ul li strong {
+    background: none; /* เอาไฮไลท์ออกสำหรับในลิสต์ */
+    color: #2c5282;
+}
+
+/* ตกแต่งข้อความภายในกล่องสูตรเด่น */
+.formula-block {
+    font-family: 'Courier New', Courier, monospace; /* ใช้ฟอนต์แนวสมการ */
+    font-size: 26px;
+    font-weight: bold;
+    color: #1a202c;
+    text-shadow: 1px 1px 0px #fff;
+}
+
+/* ตกแต่งตัวอักษรในตารางสมการตรีโกณ */
+.formula-table th {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2d3748;
+    text-transform: uppercase; /* ปรับตัวภาษาอังกฤษให้เป็นตัวพิมพ์ใหญ่ดูเป็นทางการ */
+}
+
+.formula-table td {
+    font-size: 14.5px;
+    color: #4a5568;
+}
+/* ==========================================================================
+   CSS ดีไซน์ขั้นสุดเพื่อความสบายตา (Super Clean & Minimalist Readability)
+   ========================================================================== */
+
+/* 1. ปรับพื้นหลังรวมของหน้าเรียนรู้ให้ละมุน อุ่นขึ้นเล็กน้อยเพื่อถนอมสายตา */
+.learn-container {
+    max-width: 720px !important; /* บีบความกว้างหน้าให้อยู่ในระดับสายตาที่อ่านง่ายที่สุด ไม่ต้องกวาดตาเยอะ */
+    margin-top: 60px !important;
+    margin-bottom: 120px !important;
+}
+
+/* 2. เปลี่ยนการ์ดเนื้อหาให้คลีนสุด ๆ ลบเส้นขอบหนา ๆ ออก แล้วใช้เงาจาง ๆ แทน */
+.learn-card {
+    background: #ffffff !important;
+    padding: 40px 48px !important; /* เพิ่มพื้นที่ว่างด้านในให้ข้อความดูโปร่งโล่ง */
+    border-radius: 16px !important;
+    border-left: none !important; /* เอาเส้นสีฟ้าหนา ๆ ด้านซ้ายออก เพื่อความมินิมอล */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.01) !important;
+    margin-bottom: 40px !important;
+}
+
+/* 3. ปรับฟอนต์หัวข้อให้โมเดิร์นและดูภูมิฐาน */
+.learn-card h2 {
+    font-size: 24px !important;
+    color: #1a202c !important; /* ใช้สีเกือบดำที่ดูพรีเมียม */
+    font-weight: 700 !important;
+    border-bottom: 1px solid #f1f5f9 !important; /* เส้นคั่นบางและจางลงมาก */
+    padding-bottom: 14px !important;
+    margin-bottom: 24px !important;
+}
+
+/* 4. ปรับขนาดและระยะบรรทัดข้อความให้อ่านเพลินเหมือนอ่านหนังสือพิมพ์คุณภาพ */
+.learn-card p {
+    font-size: 16.5px !important; /* ขยายขนาดขึ้นอีกนิดให้อ่านง่ายไม่ต้องเพ่ง */
+    line-height: 1.9 !important;  /* เว้นจังหวะช่องไฟระหว่างบรรทัดให้สมบูรณ์แบบ */
+    color: #4a5568 !important;    /* สีเทาเข้มสบายตา */
+    margin-bottom: 20px !important;
+}
+
+/* 5. ปรับกล่องสูตรคำนวณและกล่องไฮไลท์ให้ดูเรียบหรู */
+.formula-block {
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    font-size: 28px !important;
+    color: #1e3a8a !important; /* สีน้ำเงินเข้มสุขุม */
+    margin: 24px 0 !important;
+}
+
+.highlight-box {
+    background: #f0fdf4 !important; /* เปลี่ยนเป็นสีเขียวมิ้นต์อ่อน ๆ ดูผ่อนคลาย */
+    border-left: 3px solid #22c55e !important;
+    padding: 18px 24px !important;
+    border-radius: 8px !important;
+    color: #166534 !important;
+    font-size: 15.5px !important;
+    line-height: 1.7 !important;
+}
+
+/* 6. ปรับแต่งตารางสูตรตรีโกณให้โปร่งโล่ง สวยงาม */
+.formula-table {
+    margin: 32px 0 !important;
+}
+
+.formula-table th {
+    background: transparent !important; /* ลบสีพื้นหลังหัวตารางให้ดูเบาสบาย */
+    border-bottom: 2px solid #1a202c !important; /* ใช้เส้นคั่นสีเข้มเน้นความชัดเจน */
+    color: #1a202c !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    padding: 16px 8px !important;
+}
+
+.formula-table td {
+    border-bottom: 1px solid #f1f5f9 !important;
+    padding: 18px 8px !important;
+    color: #4a5568 !important;
+    font-size: 15.5px !important;
+}
+
+/* 7. ปรับแต่งลิสต์ (Bullet Points) ให้เยื้องสวยและมีระยะห่าง */
+.learn-card ul li {
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+    margin-bottom: 14px !important;
+    color: #4a5568 !important;
+}
+/* ==========================================================================
+   CSS บังคับจัดกึ่งกลางหน้าเนื้อหาเรียนรู้ (learn.html) ให้สมมาตร 100%
+   ========================================================================== */
+
+/* บังคับให้โครงสร้างหลักและหัวข้อของหน้าเรียนรู้อยู่ตรงกลางหน้าจอคอมพิวเตอร์ */
+.learn-container {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 720px !important; /* คุมความกว้างให้อ่านง่ายในระดับสายตา */
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box !important;
+}
+
+/* จัดให้ข้อความหัวข้อใหญ่ประจำหน้าอยู่ตรงกลาง */
+.learn-header {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 48px !important;
+}
+
+/* ป้องกันไม่ให้การ์ดเนื้อหาเบี้ยว บังคับจัดกึ่งกลางตัวเอง */
+.learn-card {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* จัดให้กล่องสูตรคำนวณเด่น ๆ อยู่ตรงกลางของการ์ด */
+.formula-block {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* สำหรับหน้าจอมือถือ บังคับให้ทุกอย่างเรียงตรงกลางแนวดิ่งอย่างปลอดภัย */
+@media (max-width: 768px) {
+    .learn-container {
+        width: 100% !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+    
+    .learn-card {
+        padding: 32px 24px !important; /* ปรับช่องไฟในมือถือให้กระชับขึ้นแต่ยังอยู่ตรงกลาง */
+    }
+}
